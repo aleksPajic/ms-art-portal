@@ -1,0 +1,88 @@
+package com.portal.art.app.repositories.dtos;
+
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
+
+import java.util.List;
+
+@Document(collection = "art")
+public class ArtDto {
+
+    @Id
+    private String id;
+
+    @Field(name = "name")
+    private String name;
+
+    @Field(name = "artist_username")
+    private String artist_username;
+
+    @Field(name = "description")
+    private String description;
+
+    @Field(name = "techniques")
+    private List<String> techniques;
+
+    @Field(name = "inspiration")
+    private String inspiration;
+
+    @Field(name = "image")
+    private String image;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getArtist_username() {
+        return artist_username;
+    }
+
+    public void setArtist_username(String artist_username) {
+        this.artist_username = artist_username;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public List<String> getTechniques() {
+        return techniques;
+    }
+
+    public void setTechniques(List<String> techniques) {
+        this.techniques = techniques;
+    }
+
+    public String getInspiration() {
+        return inspiration;
+    }
+
+    public void setInspiration(String inspiration) {
+        this.inspiration = inspiration;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+}
