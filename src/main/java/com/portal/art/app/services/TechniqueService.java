@@ -16,4 +16,8 @@ public class TechniqueService {
     public List<TechniqueDto> getAll() {
         return techniqueRepository.findAll();
     }
+
+    public List<TechniqueDto> getByCodes(List<String> codes) {
+        return techniqueRepository.findAllByCodeIn(codes);
+    }
 }
