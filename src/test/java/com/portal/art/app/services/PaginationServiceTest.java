@@ -1,6 +1,7 @@
 package com.portal.art.app.services;
 
 import com.portal.art.app.models.PortalPageable;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -28,7 +29,17 @@ class PaginationServiceTest {
 
     @Test
     public void givenPageNumberSizeAndDataList_whenPageNumberInvalid_thenThrowException() {
-        
+        // given
+        PaginationService paginationService = new PaginationService();
+        int pageNumber = -5;
+        int pageSize = 10;
+        List<PortalPageable> pageableList = new ArrayList<>();
+
+        // then
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            // when
+            paginationService.getPageData(pageableList, pageNumber, pageSize);
+        });
     }
 
 }
