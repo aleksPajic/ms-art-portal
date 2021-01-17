@@ -12,12 +12,14 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class PaginationServiceTest {
 
+    PaginationService paginationService;
+    int pageNumber;
+    int pageSize;
+
     @Test
     public void givenPageNumberSizeAndDataList_whenDataListEmpty_thenEmptyListReturned() {
         // given
-        PaginationService paginationService = new PaginationService();
-        int pageNumber = 1;
-        int pageSize = 10;
+        initData(1, 10);
         List<PortalPageable> pageableList = new ArrayList<>();
 
         // when
@@ -30,9 +32,7 @@ class PaginationServiceTest {
     @Test
     public void givenPageNumberSizeAndDataList_whenPageNumberInvalid_thenThrowException() {
         // given
-        PaginationService paginationService = new PaginationService();
-        int pageNumber = -5;
-        int pageSize = 10;
+        initData(-5, 10);
         List<PortalPageable> pageableList = new ArrayList<>();
 
         // then
@@ -45,9 +45,7 @@ class PaginationServiceTest {
     @Test
     public void givenPageNumberSizeAndDataList_whenPageSizeInvalid_thenThrowException() {
         // given
-        PaginationService paginationService = new PaginationService();
-        int pageNumber = 1;
-        int pageSize = -5;
+        initData(1, -5);
         List<PortalPageable> pageableList = new ArrayList<>();
 
         // then
@@ -57,4 +55,9 @@ class PaginationServiceTest {
         });
     }
 
+    private void initData(int pageNumber, int pageSize) {
+        paginationService = new PaginationService();
+        this.pageNumber = pageNumber;
+        this.pageSize = pageSize;
+    }
 }
