@@ -42,4 +42,9 @@ class PaginationServiceTest {
         });
     }
 
+    @Test
+    public void givenPageNumberSizeAndDataList_whenPageSizeInvalid_thenThrowException() {
+        
+    }
+
 }
