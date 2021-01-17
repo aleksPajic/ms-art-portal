@@ -44,7 +44,17 @@ class PaginationServiceTest {
 
     @Test
     public void givenPageNumberSizeAndDataList_whenPageSizeInvalid_thenThrowException() {
-        
+        // given
+        PaginationService paginationService = new PaginationService();
+        int pageNumber = 1;
+        int pageSize = -5;
+        List<PortalPageable> pageableList = new ArrayList<>();
+
+        // then
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            // when
+            paginationService.getPageData(pageableList, pageNumber, pageSize);
+        });
     }
 
 }
