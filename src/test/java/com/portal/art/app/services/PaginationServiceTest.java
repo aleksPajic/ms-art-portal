@@ -26,4 +26,9 @@ class PaginationServiceTest {
         assertThat(pageData).isEmpty();
     }
 
+    @Test
+    public void givenPageNumberSizeAndDataList_whenPageNumberInvalid_thenThrowException() {
+        
+    }
+
 }
