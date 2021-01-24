@@ -23,16 +23,9 @@ public class PaginationService {
             throw new ArgumentOutOfRangeException();
         }
 
-        if (pageNumber == 1 && pageableList.size() < pageSize) {
-            return new ArrayList<>(pageableList);
-        }
-
         int pageStartingIndex = (pageNumber - 1) * pageSize;
         List<PortalPageable> result = new ArrayList<>();
-        int lastPageIndex = pageStartingIndex + pageSize;
-        if (lastPageIndex > pageableList.size()) {
-            lastPageIndex = pageableList.size();
-        }
+        int lastPageIndex = Math.min(pageStartingIndex + pageSize, pageableList.size());
         for(int i = pageStartingIndex; i < lastPageIndex; i++) {
             result.add(pageableList.get(i));
         }
