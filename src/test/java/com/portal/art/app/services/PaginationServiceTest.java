@@ -114,8 +114,20 @@ class PaginationServiceTest {
     }
 
     @Test
-    public void givenPageNumberSizeValidAndDataListValid_whenGetPageDataCalled_returnRequiredPage() {
+    public void givenPageNumberSizeValidAndDataListValid_whenGetPageDataCalled_returnRequiredPage() throws ArgumentOutOfRangeException {
+        // given
+        initData(2, 3);
+        List<PortalPageable> pageableList = createPageableList(20);
 
+        // when
+        List<PortalPageable> result = paginationService.getPageData(pageableList, pageNumber, pageSize);
+
+        // then
+        assertThat(result).isNotEmpty();
+        assertThat(result.size()).isEqualTo(pageSize);
+        assertThat(result.get(0)).isEqualTo(pageableList.get(3));
+        assertThat(result.get(1)).isEqualTo(pageableList.get(4));
+        assertThat(result.get(2)).isEqualTo(pageableList.get(5));
     }
 
     private void initData(int pageNumber, int pageSize) {
