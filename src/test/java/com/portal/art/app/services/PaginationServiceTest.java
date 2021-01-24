@@ -103,7 +103,14 @@ class PaginationServiceTest {
 
     @Test
     public void givenPageNumberSizeValidAndDataListNull_whenGetPageDataCalled_thenThrowArgumentOutOfRangeException() {
+        // given
+        initData(2, 5);
 
+        // then
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            // when
+            paginationService.getPageData(null, pageNumber, pageSize);
+        });
     }
 
     private void initData(int pageNumber, int pageSize) {
