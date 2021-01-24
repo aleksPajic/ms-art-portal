@@ -85,6 +85,11 @@ class PaginationServiceTest {
         assertThat(pageData.get(0)).isEqualTo(pageableList.get(0));
     }
 
+    @Test
+    public void givenPageNumberGreaterThanDataListEntries_whenGetPageDataCalled_thenThrowArgumentOutOfRangeException() {
+
+    }
+
     private void initData(int pageNumber, int pageSize) {
         paginationService = new PaginationService();
         this.pageNumber = pageNumber;
