@@ -14,24 +14,25 @@ public class PaginationService {
             throw new IllegalArgumentException();
         }
 
-        if (pageNumber == 1 && pageableList.size() < pageSize) {
-            return new ArrayList<>(pageableList);
+        if (pageableList.isEmpty()) {
+            return Collections.emptyList();
         }
+
         int numberOfAvailablePages = (int) Math.ceil((double)pageableList.size() / pageSize);
         if(pageNumber > numberOfAvailablePages) {
             throw new ArgumentOutOfRangeException();
         }
 
-        if(!pageableList.isEmpty()) {
-            int pageStartingIndex = (pageNumber - 1) * pageSize;
-            List<PortalPageable> result = new ArrayList<>();
-            for(int i = pageStartingIndex; i < pageStartingIndex + pageSize; i++) {
-                result.add(pageableList.get(i));
-            }
-
-            return result;
+        if (pageNumber == 1 && pageableList.size() < pageSize) {
+            return new ArrayList<>(pageableList);
         }
 
-        return Collections.emptyList();
+        int pageStartingIndex = (pageNumber - 1) * pageSize;
+        List<PortalPageable> result = new ArrayList<>();
+        for(int i = pageStartingIndex; i < pageStartingIndex + pageSize; i++) {
+            result.add(pageableList.get(i));
+        }
+
+        return result;
     }
 }
