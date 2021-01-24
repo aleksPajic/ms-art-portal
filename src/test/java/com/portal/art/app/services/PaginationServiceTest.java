@@ -130,6 +130,11 @@ class PaginationServiceTest {
         assertThat(result.get(2)).isEqualTo(pageableList.get(5));
     }
 
+    @Test
+    public void givenLastPageNumberAndPageSizeAndDataListWithLastPageEntriesLessThanPageSize_whenGetPageDataCalled_returnLastPageWithLessThanPageSizeEntries() {
+
+    }
+
     private void initData(int pageNumber, int pageSize) {
         paginationService = new PaginationService();
         this.pageNumber = pageNumber;
