@@ -29,7 +29,11 @@ public class PaginationService {
 
         int pageStartingIndex = (pageNumber - 1) * pageSize;
         List<PortalPageable> result = new ArrayList<>();
-        for(int i = pageStartingIndex; i < pageStartingIndex + pageSize; i++) {
+        int lastPageIndex = pageStartingIndex + pageSize;
+        if (lastPageIndex > pageableList.size()) {
+            lastPageIndex = pageableList.size();
+        }
+        for(int i = pageStartingIndex; i < lastPageIndex; i++) {
             result.add(pageableList.get(i));
         }
 
