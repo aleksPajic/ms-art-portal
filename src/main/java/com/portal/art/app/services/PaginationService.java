@@ -22,6 +22,16 @@ public class PaginationService {
             throw new ArgumentOutOfRangeException();
         }
 
+        if(!pageableList.isEmpty()) {
+            int pageStartingIndex = (pageNumber - 1) * pageSize;
+            List<PortalPageable> result = new ArrayList<>();
+            for(int i = pageStartingIndex; i < pageStartingIndex + pageSize; i++) {
+                result.add(pageableList.get(i));
+            }
+
+            return result;
+        }
+
         return Collections.emptyList();
     }
 }
