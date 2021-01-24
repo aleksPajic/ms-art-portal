@@ -20,6 +20,10 @@ public class PaginationService {
            return result;
         }
 
+        if (pageNumber == 1 && pageableList.size() < pageSize) {
+            return new ArrayList<>(pageableList);
+        }
+
         return Collections.emptyList();
     }
 }
