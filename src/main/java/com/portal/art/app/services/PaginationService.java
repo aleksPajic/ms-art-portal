@@ -10,10 +10,7 @@ import java.util.List;
 public class PaginationService {
 
     public List<PortalPageable> getPageData(List<PortalPageable> pageableList, int pageNumber, int pageSize) throws ArgumentOutOfRangeException {
-        if (pageableList == null) {
-            throw new IllegalArgumentException();
-        }
-        if (pageNumber < 0 || pageSize < 0) {
+        if (pageNumber < 0 || pageSize < 0 || pageableList == null) {
             throw new IllegalArgumentException();
         }
 
