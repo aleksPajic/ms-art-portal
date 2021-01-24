@@ -73,8 +73,22 @@ class PaginationServiceTest {
     }
 
     @Test
-    public void givenPageNumberSizeValidAndDataListWithLessThenPageSizeEntries_whenGetPageDataCalled_thenReturnAllDataListEntries() {
-        
+    public void givenPageNumber1AndPageSizeValidAndDataListWithLessThenPageSizeEntries_whenGetPageDataCalled_thenReturnAllDataListEntries() {
+        // given
+        initData(1, 5);
+        List<PortalPageable> pageableList = new ArrayList<>();
+        int dataListEntries = pageSize - 2;
+        for (int i = 0; i < dataListEntries; i++) {
+            pageableList.add(new Art());
+        }
+
+        // when
+        List<PortalPageable> pageData = paginationService.getPageData(pageableList, pageNumber, pageSize);
+
+        // then
+        assertThat(pageData.size()).isEqualTo(pageableList.size());
+        assertThat(pageData.get(0)).isNotNull();
+        assertThat(pageData.get(0)).isEqualTo(pageableList.get(0));
     }
 
     private void initData(int pageNumber, int pageSize) {
