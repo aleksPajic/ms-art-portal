@@ -1,5 +1,6 @@
 package com.portal.art.app.services;
 
+import com.portal.art.app.common.exceptions.ArgumentOutOfRangeException;
 import com.portal.art.app.models.Art;
 import com.portal.art.app.models.PortalPageable;
 import org.junit.jupiter.api.Assertions;
@@ -86,8 +87,18 @@ class PaginationServiceTest {
     }
 
     @Test
-    public void givenPageNumberGreaterThanDataListEntries_whenGetPageDataCalled_thenThrowArgumentOutOfRangeException() {
+    public void givenPageNumberGreaterThanDataListPages_whenGetPageDataCalled_thenThrowArgumentOutOfRangeException() {
+        // given
+        // second page cannot be retrieved from data list because there is not enough entries for 2 pages
+        initData(2, 5);
+        int dataListEntries = pageSize - 2;
+        List<PortalPageable> pageableList = createPageableList(dataListEntries);
 
+        // then
+        Assertions.assertThrows(ArgumentOutOfRangeException.class, () -> {
+            // when
+            paginationService.getPageData(pageableList, pageNumber, pageSize);
+        });
     }
 
     private void initData(int pageNumber, int pageSize) {
