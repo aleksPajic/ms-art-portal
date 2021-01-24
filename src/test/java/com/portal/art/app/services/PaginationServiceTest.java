@@ -57,7 +57,7 @@ class PaginationServiceTest {
     }
 
     @Test
-    public void givenPageNumber1PageSize3AndDataListWth2Entries_whenGetPageDataCalled_thenReturn2Entries() {
+    public void givenPageNumber1PageSize3AndDataListWith2Entries_whenGetPageDataCalled_thenReturn2Entries() {
         // given
         initData(1, 3);
         List<PortalPageable> pageableList = new ArrayList<>();
@@ -70,6 +70,11 @@ class PaginationServiceTest {
 
         // then
         assertThat(pageData.size()).isEqualTo(2);
+    }
+
+    @Test
+    public void givenPageNumberSizeValidAndDataListWithLessThenPageSizeEntries_whenGetPageDataCalled_thenReturnAllDataListEntries() {
+        
     }
 
     private void initData(int pageNumber, int pageSize) {
