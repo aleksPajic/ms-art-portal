@@ -19,7 +19,7 @@ class PaginationServiceTest {
     int pageSize;
 
     @Test
-    public void givenPageNumberSizeAndDataList_whenDataListEmpty_thenEmptyListReturned() {
+    public void givenPageNumberSizeAndDataList_whenDataListEmpty_thenEmptyListReturned() throws ArgumentOutOfRangeException {
         // given
         initData(1, 10);
         List<PortalPageable> pageableList = createPageableList(0);
@@ -58,7 +58,7 @@ class PaginationServiceTest {
     }
 
     @Test
-    public void givenPageNumber1PageSize3AndDataListWith2Entries_whenGetPageDataCalled_thenReturn2Entries() {
+    public void givenPageNumber1PageSize3AndDataListWith2Entries_whenGetPageDataCalled_thenReturn2Entries() throws ArgumentOutOfRangeException {
         // given
         initData(1, 3);
         List<PortalPageable> pageableList = createPageableList(2);
@@ -71,7 +71,7 @@ class PaginationServiceTest {
     }
 
     @Test
-    public void givenPageNumber1AndPageSizeValidAndDataListWithLessThenPageSizeEntries_whenGetPageDataCalled_thenReturnAllDataListEntries() {
+    public void givenPageNumber1AndPageSizeValidAndDataListWithLessThenPageSizeEntries_whenGetPageDataCalled_thenReturnAllDataListEntries() throws ArgumentOutOfRangeException {
         // given
         initData(1, 5);
         int dataListEntries = pageSize - 2;
