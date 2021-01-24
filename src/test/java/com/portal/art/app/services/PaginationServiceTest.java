@@ -131,8 +131,25 @@ class PaginationServiceTest {
     }
 
     @Test
-    public void givenLastPageNumberAndPageSizeAndDataListWithLastPageEntriesLessThanPageSize_whenGetPageDataCalled_returnLastPageWithLessThanPageSizeEntries() {
+    public void givenLastPageNumberAndPageSizeAndDataListWithLastPageEntriesLessThanPageSize_whenGetPageDataCalled_returnLastPageWithLessThanPageSizeEntries()
+            throws ArgumentOutOfRangeException {
+        // given
+        int lastPage = 2;
+        int pageSizeValue = 5;
+        int lastPageSize = 3;
+        int dataListEntries = (lastPage - 1) * pageSizeValue + lastPageSize;
+        initData(lastPage, pageSizeValue);
+        List<PortalPageable> pageableList = createPageableList(dataListEntries);
 
+        // when
+        List<PortalPageable> result = paginationService.getPageData(pageableList, pageNumber, pageSize);
+
+        // then
+        assertThat(result).isNotEmpty();
+        assertThat(result.size()).isEqualTo(lastPageSize);
+        assertThat(result.get(0)).isEqualTo(pageableList.get(5));
+        assertThat(result.get(1)).isEqualTo(pageableList.get(6));
+        assertThat(result.get(2)).isEqualTo(pageableList.get(7));
     }
 
     private void initData(int pageNumber, int pageSize) {
