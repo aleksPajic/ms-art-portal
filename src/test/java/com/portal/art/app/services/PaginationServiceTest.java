@@ -101,6 +101,11 @@ class PaginationServiceTest {
         });
     }
 
+    @Test
+    public void givenPageNumberSizeValidAndDataListNull_whenGetPageDataCalled_thenThrowArgumentOutOfRangeException() {
+
+    }
+
     private void initData(int pageNumber, int pageSize) {
         paginationService = new PaginationService();
         this.pageNumber = pageNumber;
