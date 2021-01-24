@@ -13,13 +13,6 @@ public class PaginationService {
             throw new IllegalArgumentException();
         }
 
-        if (pageNumber == 1 && pageSize == 3 && pageableList.size() == 2) {
-           List<PortalPageable> result = new ArrayList<>();
-           result.add(pageableList.get(0));
-           result.add(pageableList.get(1));
-           return result;
-        }
-
         if (pageNumber == 1 && pageableList.size() < pageSize) {
             return new ArrayList<>(pageableList);
         }
