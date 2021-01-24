@@ -55,6 +55,10 @@ class PaginationServiceTest {
         });
     }
 
+    @Test
+    public void givenPageNumber1PageSize3AndDataListWth2Entries_whenGetPageDataCalled_thenReturn2Entries() {
+    }
+
     private void initData(int pageNumber, int pageSize) {
         paginationService = new PaginationService();
         this.pageNumber = pageNumber;
