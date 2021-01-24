@@ -21,7 +21,7 @@ class PaginationServiceTest {
     public void givenPageNumberSizeAndDataList_whenDataListEmpty_thenEmptyListReturned() {
         // given
         initData(1, 10);
-        List<PortalPageable> pageableList = new ArrayList<>();
+        List<PortalPageable> pageableList = createPageableList(0);
 
         // when
         List<PortalPageable> pageData = paginationService.getPageData(pageableList, pageNumber, pageSize);
@@ -34,7 +34,7 @@ class PaginationServiceTest {
     public void givenPageNumberSizeAndDataList_whenPageNumberInvalid_thenThrowException() {
         // given
         initData(-5, 10);
-        List<PortalPageable> pageableList = new ArrayList<>();
+        List<PortalPageable> pageableList = createPageableList(0);
 
         // then
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
@@ -47,7 +47,7 @@ class PaginationServiceTest {
     public void givenPageNumberSizeAndDataList_whenPageSizeInvalid_thenThrowException() {
         // given
         initData(1, -5);
-        List<PortalPageable> pageableList = new ArrayList<>();
+        List<PortalPageable> pageableList = createPageableList(0);
 
         // then
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
@@ -60,10 +60,7 @@ class PaginationServiceTest {
     public void givenPageNumber1PageSize3AndDataListWith2Entries_whenGetPageDataCalled_thenReturn2Entries() {
         // given
         initData(1, 3);
-        List<PortalPageable> pageableList = new ArrayList<>();
-        for (int i = 0; i < 2; i++) {
-            pageableList.add(new Art());
-        }
+        List<PortalPageable> pageableList = createPageableList(2);
 
         // when
         List<PortalPageable> pageData = paginationService.getPageData(pageableList, pageNumber, pageSize);
@@ -76,11 +73,8 @@ class PaginationServiceTest {
     public void givenPageNumber1AndPageSizeValidAndDataListWithLessThenPageSizeEntries_whenGetPageDataCalled_thenReturnAllDataListEntries() {
         // given
         initData(1, 5);
-        List<PortalPageable> pageableList = new ArrayList<>();
         int dataListEntries = pageSize - 2;
-        for (int i = 0; i < dataListEntries; i++) {
-            pageableList.add(new Art());
-        }
+        List<PortalPageable> pageableList = createPageableList(dataListEntries);
 
         // when
         List<PortalPageable> pageData = paginationService.getPageData(pageableList, pageNumber, pageSize);
@@ -95,5 +89,14 @@ class PaginationServiceTest {
         paginationService = new PaginationService();
         this.pageNumber = pageNumber;
         this.pageSize = pageSize;
+    }
+
+    private List<PortalPageable> createPageableList(int size) {
+        List<PortalPageable> pageableList = new ArrayList<>();
+        for (int i = 0; i < size; i++) {
+            pageableList.add(new Art());
+        }
+
+        return pageableList;
     }
 }
