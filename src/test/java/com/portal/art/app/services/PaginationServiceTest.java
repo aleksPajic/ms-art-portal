@@ -1,5 +1,6 @@
 package com.portal.art.app.services;
 
+import com.portal.art.app.models.Art;
 import com.portal.art.app.models.PortalPageable;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -57,6 +58,18 @@ class PaginationServiceTest {
 
     @Test
     public void givenPageNumber1PageSize3AndDataListWth2Entries_whenGetPageDataCalled_thenReturn2Entries() {
+        // given
+        initData(1, 3);
+        List<PortalPageable> pageableList = new ArrayList<>();
+        for (int i = 0; i < 2; i++) {
+            pageableList.add(new Art());
+        }
+
+        // when
+        List<PortalPageable> pageData = paginationService.getPageData(pageableList, pageNumber, pageSize);
+
+        // then
+        assertThat(pageData.size()).isEqualTo(2);
     }
 
     private void initData(int pageNumber, int pageSize) {
