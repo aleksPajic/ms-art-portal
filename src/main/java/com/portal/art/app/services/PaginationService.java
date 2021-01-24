@@ -17,7 +17,7 @@ public class PaginationService {
         if (pageNumber == 1 && pageableList.size() < pageSize) {
             return new ArrayList<>(pageableList);
         }
-        int numberOfAvailablePages = pageableList.size() / pageSize;
+        int numberOfAvailablePages = (int) Math.ceil((double)pageableList.size() / pageSize);
         if(pageNumber > numberOfAvailablePages) {
             throw new ArgumentOutOfRangeException();
         }
