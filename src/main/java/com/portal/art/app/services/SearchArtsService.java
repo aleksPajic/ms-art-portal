@@ -13,11 +13,8 @@ public class SearchArtsService {
             throw new IllegalArgumentException();
         }
 
-        if(Objects.isNull(technique) && Objects.isNull(name) && Objects.isNull(artist)) {
-            return arts;
-        }
-
-        if(arts.size() > 0 && technique.isEmpty() && name.isEmpty() && artist.isEmpty()) {
+        if((Objects.isNull(technique) || technique.isEmpty()) && (Objects.isNull(name) || name.isEmpty()) &&
+                (Objects.isNull(artist) || artist.isEmpty())) {
             return arts;
         }
         
