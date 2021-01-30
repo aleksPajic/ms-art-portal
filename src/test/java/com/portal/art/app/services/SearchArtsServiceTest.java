@@ -100,6 +100,11 @@ class SearchArtsServiceTest {
         assertThat(result.get(1).getId()).isEqualTo("3");
     }
 
+    @Test
+    public void givenDataListFullAndArtistParameterValueSet_whenSearchArtsCalled_thenDataListIsFilteredByArtistOnly() {
+
+    }
+
     private void initSearchParameters(String technique, String name, String artist) {
         this.technique = technique;
         this.name = name;
