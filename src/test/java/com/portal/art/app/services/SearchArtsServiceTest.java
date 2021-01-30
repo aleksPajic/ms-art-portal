@@ -21,7 +21,7 @@ class SearchArtsServiceTest {
         // then
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
             //when
-            searchArtsService.searchArts(arts);
+            searchArtsService.searchArts(arts, technique, name, artist);
         });
     }
 
