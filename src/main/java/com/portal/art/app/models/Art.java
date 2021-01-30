@@ -20,6 +20,16 @@ public class Art {
 
     private String image;
 
+    public Art() {
+    }
+
+    public Art(String id, String name, String artist_username, List<String> techniques) {
+        this.id = id;
+        this.name = name;
+        this.artist_username = artist_username;
+        this.techniques = techniques;
+    }
+
     public String getId() {
         return id;
     }
