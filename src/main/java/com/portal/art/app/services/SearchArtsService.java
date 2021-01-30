@@ -11,6 +11,10 @@ public class SearchArtsService {
         if(arts == null) {
             throw new IllegalArgumentException();
         }
+
+        if(arts.size() > 0 && technique.isEmpty() && name.isEmpty() && artist.isEmpty()) {
+            return arts;
+        }
         
         return Collections.emptyList();
     }
