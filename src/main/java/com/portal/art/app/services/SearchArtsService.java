@@ -8,9 +8,10 @@ import java.util.List;
 public class SearchArtsService {
 
     public List<Art> searchArts(List<Art> arts, String technique, String name, String artist) {
-        if(arts != null && arts.isEmpty()) {
-            return Collections.emptyList();
+        if(arts == null) {
+            throw new IllegalArgumentException();
         }
-        throw new IllegalArgumentException();
+        
+        return Collections.emptyList();
     }
 }
