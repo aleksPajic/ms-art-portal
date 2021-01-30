@@ -25,4 +25,9 @@ class SearchArtsServiceTest {
         });
     }
 
+    @Test
+    public void givenDataListEmptyAndSearchParameters_whenSearchArtsCalled_thenReturnEmptyArray() {
+        
+    }
+
 }
