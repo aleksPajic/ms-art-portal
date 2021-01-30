@@ -44,4 +44,9 @@ class SearchArtsServiceTest {
         assertThat(result).isEmpty();
     }
 
+    @Test
+    public void givenDataListFullAndSearchParametersAllEmpty_whenSearchArtsCalled_thenReturnDataListUnchanged() {
+
+    }
+
 }
