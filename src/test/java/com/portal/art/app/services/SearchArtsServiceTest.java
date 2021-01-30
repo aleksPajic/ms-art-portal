@@ -71,9 +71,9 @@ class SearchArtsServiceTest {
         this.artist = artist;
     }
 
-    private List<Art> createArtDataOfSize(int size){
+    private List<Art> createArtDataOfSize(int size) {
         List<Art> arts = new ArrayList<>();
-        for(int i = 0; i < size; i++) {
+        for (int i = 0; i < size; i++) {
             arts.add(new Art(
                     String.valueOf(i),
                     "name" + i,
