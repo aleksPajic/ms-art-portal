@@ -96,8 +96,8 @@ class SearchArtsServiceTest {
 
         //then
         assertThat(result.size()).isEqualTo(2);
-        assertThat(result.get(0).getId()).isEqualTo(1);
-        assertThat(result.get(0).getId()).isEqualTo(3);
+        assertThat(result.get(0).getId()).isEqualTo("1");
+        assertThat(result.get(1).getId()).isEqualTo("3");
     }
 
     private void initSearchParameters(String technique, String name, String artist) {
