@@ -2,6 +2,7 @@ package com.portal.art.app.services;
 
 import com.portal.art.app.models.Art;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -12,14 +13,21 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class SearchArtsServiceTest {
 
+    SearchArtsService searchArtsService;
+    String technique;
+    String name;
+    String artist;
+
+    @BeforeEach
+    public void initService() {
+        searchArtsService = new SearchArtsService();
+    }
+
     @Test
     public void givenDataListNullAndSearchParameters_whenSearchArtsCalled_thenThrowIllegalArgumentException() {
         //given
-        SearchArtsService searchArtsService = new SearchArtsService();
         List<Art> arts = null;
-        String technique = "technique";
-        String name = "name";
-        String artist = "artist";
+        initSearchParameters("technique", "name", "artist");
 
         // then
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
@@ -31,11 +39,8 @@ class SearchArtsServiceTest {
     @Test
     public void givenDataListEmptyAndSearchParameters_whenSearchArtsCalled_thenReturnEmptyArray() {
         //given
-        SearchArtsService searchArtsService = new SearchArtsService();
-        List<Art> arts = new ArrayList<>();
-        String technique = "technique";
-        String name = "name";
-        String artist = "artist";
+        initSearchParameters("technique", "name", "artist");
+        List<Art> arts = createArtDataOfSize(0);
 
         //when
         List<Art> result = searchArtsService.searchArts(arts, technique, name, artist);
@@ -47,15 +52,8 @@ class SearchArtsServiceTest {
     @Test
     public void givenDataListFullAndSearchParametersAllEmpty_whenSearchArtsCalled_thenReturnDataListUnchanged() {
         //given
-        SearchArtsService searchArtsService = new SearchArtsService();
-        List<Art> arts = new ArrayList<>();
-        arts.add(new Art("1", "name1", "artist1", List.of("technique1")));
-        arts.add(new Art("2", "name2", "artist2", List.of("technique2")));
-        arts.add(new Art("3", "name3", "artist3", List.of("technique3")));
-
-        String technique = "";
-        String name = "";
-        String artist = "";
+        initSearchParameters("", "", "");
+        List<Art> arts = createArtDataOfSize(3);
 
         //when
         List<Art> result = searchArtsService.searchArts(arts, technique, name, artist);
@@ -67,4 +65,22 @@ class SearchArtsServiceTest {
         assertThat(result.get(2).getId()).isEqualTo("3");
     }
 
+    private void initSearchParameters(String technique, String name, String artist) {
+        this.technique = technique;
+        this.name = name;
+        this.artist = artist;
+    }
+
+    private List<Art> createArtDataOfSize(int size){
+        List<Art> arts = new ArrayList<>();
+        for(int i = 0; i < size; i++) {
+            arts.add(new Art(
+                    String.valueOf(i),
+                    "name" + i,
+                    "artist" + i,
+                    List.of("technique" + i)
+            ));
+        }
+        return arts;
+    }
 }
