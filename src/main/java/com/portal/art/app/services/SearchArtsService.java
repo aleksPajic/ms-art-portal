@@ -2,10 +2,7 @@ package com.portal.art.app.services;
 
 import com.portal.art.app.models.Art;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 public class SearchArtsService {
 
@@ -38,7 +35,21 @@ public class SearchArtsService {
             }
             return result;
         }
-        
+
+        if (technique != null && !technique.isEmpty()) {
+            List<Art> result = new ArrayList<>();
+            for (Art item : arts) {
+                Optional<String> techniqueOptional = item.getTechniques()
+                        .stream()
+                        .filter(x -> x.contains(technique))
+                        .findAny();
+                if (techniqueOptional.isPresent()) {
+                    result.add(item);
+                }
+            }
+            return result;
+        }
+
         return Collections.emptyList();
     }
 }
