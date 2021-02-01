@@ -117,7 +117,7 @@ class SearchArtsServiceTest {
         assertThat(result.size()).isEqualTo(2);
         assertThat(result.get(0).getId()).isEqualTo("0");
         assertThat(result.get(0).getArtist_username()).isEqualTo("artistTest0");
-        assertThat(result.get(1).getId()).isEqualTo("4");
+        assertThat(result.get(1).getId()).isEqualTo("3");
         assertThat(result.get(1).getArtist_username()).isEqualTo("artistTest_test3");
     }
 
