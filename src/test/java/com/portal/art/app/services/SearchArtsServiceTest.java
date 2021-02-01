@@ -102,7 +102,23 @@ class SearchArtsServiceTest {
 
     @Test
     public void givenDataListFullAndArtistParameterValueSet_whenSearchArtsCalled_thenDataListIsFilteredByArtistOnly() {
+        //given
+        initSearchParameters(null, null, "artistTest");
+        List<Art> arts = new ArrayList<>();
+        arts.add(new Art(String.valueOf(0), "name0","artistTest0", List.of("technique0")));
+        arts.add(new Art(String.valueOf(1), "name1","artist2", List.of("technique1")));
+        arts.add(new Art(String.valueOf(2), "name2","artist1", List.of("technique2")));
+        arts.add(new Art(String.valueOf(3), "name3","artistTest_test3", List.of("technique3")));
 
+        //when
+        List<Art> result = searchArtsService.searchArts(arts, technique, name, artist);
+
+        //then
+        assertThat(result.size()).isEqualTo(2);
+        assertThat(result.get(0).getId()).isEqualTo("0");
+        assertThat(result.get(0).getArtist_username()).isEqualTo("artistTest0");
+        assertThat(result.get(1).getId()).isEqualTo("4");
+        assertThat(result.get(1).getArtist_username()).isEqualTo("artistTest_test3");
     }
 
     private void initSearchParameters(String technique, String name, String artist) {
