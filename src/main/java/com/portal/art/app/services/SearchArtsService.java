@@ -28,6 +28,16 @@ public class SearchArtsService {
             }
             return result;
         }
+
+        if (artist != null && !artist.isEmpty()) {
+            List<Art> result = new ArrayList<>();
+            for (Art item : arts) {
+                if (item.getArtist_username().contains(artist)) {
+                    result.add(item);
+                }
+            }
+            return result;
+        }
         
         return Collections.emptyList();
     }
