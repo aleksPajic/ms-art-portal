@@ -18,13 +18,13 @@ public class SearchArtsService {
             return arts;
         }
 
+        List<Art> result = arts;
         if (name != null && !name.isEmpty()) {
             return arts.stream()
                     .filter(art -> art.getName().contains(name))
                     .collect(Collectors.toList());
         }
 
-        List<Art> result = arts;
         if (artist != null && !artist.isEmpty()) {
             result = arts.stream()
                     .filter(art -> art.getArtist_username().contains(artist))
