@@ -182,7 +182,7 @@ class SearchArtsServiceTest {
         assertThat(result.get(0).getName()).isEqualTo("name test 1");
         assertThat(result.get(1).getId()).isEqualTo("2");
         assertThat(result.get(1).getTechniques()).contains("acrylics");
-        assertThat(result.get(1).getName()).isEqualTo("nameTest 2");
+        assertThat(result.get(1).getName()).isEqualTo("name_test 2");
     }
 
     private void initSearchParameters(String technique, String name, String artist) {
