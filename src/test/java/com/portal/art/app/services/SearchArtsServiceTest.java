@@ -169,7 +169,7 @@ class SearchArtsServiceTest {
         List<Art> arts = new ArrayList<>();
         arts.add(new Art(String.valueOf(0), "name0", "artistTest0", List.of("technique0")));
         arts.add(new Art(String.valueOf(1), "name test 1", "artistTest2", List.of("acrylics", "technique2")));
-        arts.add(new Art(String.valueOf(2), "nameTest 2", "artist2", List.of("technique2", "acrylics")));
+        arts.add(new Art(String.valueOf(2), "name_test 2", "artist2", List.of("technique2", "acrylics")));
         arts.add(new Art(String.valueOf(3), "name3", "artistTest_test3", List.of("technique3")));
 
         //when
