@@ -142,6 +142,11 @@ class SearchArtsServiceTest {
         assertThat(result.get(1).getTechniques()).contains("acrylics");
     }
 
+    @Test
+    public void givenDataListFullAndNameParameterValueNull_whenSearchArtsCalled_thenDataListIsFilteredByTechniqueAndArtist() {
+
+    }
+
     private void initSearchParameters(String technique, String name, String artist) {
         this.technique = technique;
         this.name = name;
