@@ -2,7 +2,8 @@ package com.portal.art.app.services;
 
 import com.portal.art.app.models.Art;
 
-import java.util.*;
+import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class SearchArtsService {
@@ -17,30 +18,25 @@ public class SearchArtsService {
             return arts;
         }
 
-        if (name == null && technique != null && !technique.isEmpty() && artist != null && !artist.isEmpty()) {
-            return arts.stream().filter((art) -> {
-                boolean artistExist = art.getArtist_username().contains(artist);
-                boolean techniqueExists = art.getTechniques()
-                        .stream()
-                        .anyMatch(x -> x.contains(technique));
-                return artistExist && techniqueExists;
-            }).collect(Collectors.toList());
-        }
-
         if (name != null && !name.isEmpty()) {
             return arts.stream()
                     .filter(art -> art.getName().contains(name))
                     .collect(Collectors.toList());
         }
 
+        List<Art> result = arts;
         if (artist != null && !artist.isEmpty()) {
-            return arts.stream()
+            result = arts.stream()
                     .filter(art -> art.getArtist_username().contains(artist))
                     .collect(Collectors.toList());
         }
 
-        return arts.stream()
-                .filter(art -> art.getTechniques().stream().anyMatch(x -> x.contains(technique)))
-                .collect(Collectors.toList());
+        if (technique != null && !technique.isEmpty()) {
+            result = result.stream()
+                    .filter(art -> art.getTechniques().stream().anyMatch(x -> x.contains(technique)))
+                    .collect(Collectors.toList());
+        }
+
+        return result;
     }
 }
