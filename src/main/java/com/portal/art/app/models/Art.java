@@ -4,7 +4,7 @@ import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.util.List;
 
-public class Art {
+public class Art  implements PortalPageable{
 
     private String id;
 

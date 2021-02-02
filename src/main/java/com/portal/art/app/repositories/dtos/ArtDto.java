@@ -1,5 +1,6 @@
 package com.portal.art.app.repositories.dtos;
 
+import org.bson.types.Binary;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
@@ -21,14 +22,14 @@ public class ArtDto {
     @Field(name = "description")
     private String description;
 
-    @Field(name = "techniques")
-    private List<String> techniques;
+    @Field(name = "technique_codes")
+    private List<String> techniqueCodes;
 
     @Field(name = "inspiration")
     private String inspiration;
 
     @Field(name = "image")
-    private String image;
+    private Binary image;
 
     public String getId() {
         return id;
@@ -62,12 +63,12 @@ public class ArtDto {
         this.description = description;
     }
 
-    public List<String> getTechniques() {
-        return techniques;
+    public List<String> getTechniqueCodes() {
+        return techniqueCodes;
     }
 
-    public void setTechniques(List<String> techniques) {
-        this.techniques = techniques;
+    public void setTechniqueCodes(List<String> techniqueCodes) {
+        this.techniqueCodes = techniqueCodes;
     }
 
     public String getInspiration() {
@@ -78,11 +79,11 @@ public class ArtDto {
         this.inspiration = inspiration;
     }
 
-    public String getImage() {
+    public Binary getImage() {
         return image;
     }
 
-    public void setImage(String image) {
+    public void setImage(Binary image) {
         this.image = image;
     }
 }
