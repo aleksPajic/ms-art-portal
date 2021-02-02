@@ -13,12 +13,8 @@ public class SearchArtsService {
             throw new IllegalArgumentException();
         }
 
-        if ((Objects.isNull(technique) || technique.isEmpty()) && (Objects.isNull(name) || name.isEmpty()) &&
-                (Objects.isNull(artist) || artist.isEmpty())) {
-            return arts;
-        }
-
         List<Art> result = arts;
+
         if (name != null && !name.isEmpty()) {
             result = result.stream()
                     .filter(art -> art.getName().contains(name))
