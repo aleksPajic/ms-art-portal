@@ -2,7 +2,6 @@ package com.portal.art.app.services;
 
 import com.portal.art.app.common.exceptions.ArgumentOutOfRangeException;
 import com.portal.art.app.models.Art;
-import com.portal.art.app.models.PortalPageable;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -11,10 +10,9 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-
 class PaginationServiceTest {
 
-    PaginationService paginationService;
+    PaginationService<Art> paginationService;
     int pageNumber;
     int pageSize;
 
@@ -22,10 +20,10 @@ class PaginationServiceTest {
     public void givenPageNumberSizeAndDataList_whenDataListEmpty_thenEmptyListReturned() throws ArgumentOutOfRangeException {
         // given
         initData(1, 10);
-        List<PortalPageable> pageableList = createPageableList(0);
+        List<Art> pageableList = createPageableList(0);
 
         // when
-        List<PortalPageable> pageData = paginationService.getPageData(pageableList, pageNumber, pageSize);
+        List<Art> pageData = paginationService.getPageData(pageableList, pageNumber, pageSize);
 
         // then
         assertThat(pageData).isEmpty();
@@ -35,7 +33,7 @@ class PaginationServiceTest {
     public void givenPageNumberSizeAndDataList_whenPageNumberInvalid_thenThrowException() {
         // given
         initData(-5, 10);
-        List<PortalPageable> pageableList = createPageableList(0);
+        List<Art> pageableList = createPageableList(0);
 
         // then
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
@@ -48,7 +46,7 @@ class PaginationServiceTest {
     public void givenPageNumberSizeAndDataList_whenPageSizeInvalid_thenThrowException() {
         // given
         initData(1, -5);
-        List<PortalPageable> pageableList = createPageableList(0);
+        List<Art> pageableList = createPageableList(0);
 
         // then
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
@@ -61,10 +59,10 @@ class PaginationServiceTest {
     public void givenPageNumber1PageSize3AndDataListWith2Entries_whenGetPageDataCalled_thenReturn2Entries() throws ArgumentOutOfRangeException {
         // given
         initData(1, 3);
-        List<PortalPageable> pageableList = createPageableList(2);
+        List<Art> pageableList = createPageableList(2);
 
         // when
-        List<PortalPageable> pageData = paginationService.getPageData(pageableList, pageNumber, pageSize);
+        List<Art> pageData = paginationService.getPageData(pageableList, pageNumber, pageSize);
 
         // then
         assertThat(pageData.size()).isEqualTo(2);
@@ -75,10 +73,10 @@ class PaginationServiceTest {
         // given
         initData(1, 5);
         int dataListEntries = pageSize - 2;
-        List<PortalPageable> pageableList = createPageableList(dataListEntries);
+        List<Art> pageableList = createPageableList(dataListEntries);
 
         // when
-        List<PortalPageable> pageData = paginationService.getPageData(pageableList, pageNumber, pageSize);
+        List<Art> pageData = paginationService.getPageData(pageableList, pageNumber, pageSize);
 
         // then
         assertThat(pageData.size()).isEqualTo(pageableList.size());
@@ -92,7 +90,7 @@ class PaginationServiceTest {
         // second page cannot be retrieved from data list because there is not enough entries for 2 pages
         initData(2, 5);
         int dataListEntries = pageSize - 2;
-        List<PortalPageable> pageableList = createPageableList(dataListEntries);
+        List<Art> pageableList = createPageableList(dataListEntries);
 
         // then
         Assertions.assertThrows(ArgumentOutOfRangeException.class, () -> {
@@ -117,10 +115,10 @@ class PaginationServiceTest {
     public void givenPageNumberSizeValidAndDataListValid_whenGetPageDataCalled_returnRequiredPage() throws ArgumentOutOfRangeException {
         // given
         initData(2, 3);
-        List<PortalPageable> pageableList = createPageableList(20);
+        List<Art> pageableList = createPageableList(20);
 
         // when
-        List<PortalPageable> result = paginationService.getPageData(pageableList, pageNumber, pageSize);
+        List<Art> result = paginationService.getPageData(pageableList, pageNumber, pageSize);
 
         // then
         assertThat(result).isNotEmpty();
@@ -139,10 +137,10 @@ class PaginationServiceTest {
         int lastPageSize = 3;
         int dataListEntries = (lastPage - 1) * pageSizeValue + lastPageSize;
         initData(lastPage, pageSizeValue);
-        List<PortalPageable> pageableList = createPageableList(dataListEntries);
+        List<Art> pageableList = createPageableList(dataListEntries);
 
         // when
-        List<PortalPageable> result = paginationService.getPageData(pageableList, pageNumber, pageSize);
+        List<Art> result = paginationService.getPageData(pageableList, pageNumber, pageSize);
 
         // then
         assertThat(result).isNotEmpty();
@@ -153,13 +151,13 @@ class PaginationServiceTest {
     }
 
     private void initData(int pageNumber, int pageSize) {
-        paginationService = new PaginationService();
+        paginationService = new PaginationService<Art>();
         this.pageNumber = pageNumber;
         this.pageSize = pageSize;
     }
 
-    private List<PortalPageable> createPageableList(int size) {
-        List<PortalPageable> pageableList = new ArrayList<>();
+    private List<Art> createPageableList(int size) {
+        List<Art> pageableList = new ArrayList<>();
         for (int i = 0; i < size; i++) {
             pageableList.add(new Art());
         }

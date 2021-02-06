@@ -7,9 +7,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class PaginationService {
+public class PaginationService<T> {
 
-    public List<PortalPageable> getPageData(List<PortalPageable> pageableList, int pageNumber, int pageSize) throws ArgumentOutOfRangeException {
+    public List<T> getPageData(List<T> pageableList, int pageNumber, int pageSize) throws ArgumentOutOfRangeException {
         if (pageNumber < 0 || pageSize < 0 || pageableList == null) {
             throw new IllegalArgumentException();
         }
@@ -24,7 +24,7 @@ public class PaginationService {
         }
 
         int pageStartingIndex = (pageNumber - 1) * pageSize;
-        List<PortalPageable> result = new ArrayList<>();
+        List<T> result = new ArrayList<>();
         int lastPageIndex = Math.min(pageStartingIndex + pageSize, pageableList.size());
         for(int i = pageStartingIndex; i < lastPageIndex; i++) {
             result.add(pageableList.get(i));
