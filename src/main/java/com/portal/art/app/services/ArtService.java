@@ -1,5 +1,6 @@
 package com.portal.art.app.services;
 
+import com.portal.art.app.common.exceptions.ArgumentOutOfRangeException;
 import com.portal.art.app.controllers.requests.ArtRequest;
 import com.portal.art.app.models.Art;
 import com.portal.art.app.models.ArtMapper;
@@ -52,4 +53,9 @@ public class ArtService {
         return searchArtsService.searchArts(artList, technique, name, artist);
     }
 
+    public List<Art> getSearchArtsForPage(String name, String artist, String technique, int pageNumber, int pageSize) throws ArgumentOutOfRangeException {
+        PaginationService<Art> paginationService = new PaginationService<>();
+        List<Art> filteredArtsList = searchForArts(technique, name, artist);
+        return paginationService.getPageData(filteredArtsList, pageNumber, pageSize);
+    }
 }
