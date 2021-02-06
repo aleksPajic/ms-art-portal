@@ -35,9 +35,9 @@ public class ArtService {
         this.artMapper = artMapper;
     }
 
-    public ArtDto createArt(ArtRequest artRequest) throws IOException {
+    public void createArt(ArtRequest artRequest) throws IOException {
         ArtDto artDto = artMapper.map(artRequest);
-        return artRepository.save(artDto);
+        artRepository.save(artDto);
     }
 
     public List<ArtDto> getArtsForPage(int pageNumber, int pageSize) {
@@ -46,7 +46,9 @@ public class ArtService {
     }
 
     public List<Art> searchForArts(String technique, String name, String artist) {
-        this.artRepository.findAll();
+        List<ArtDto> artDtos = this.artRepository.findAll();
+        List<Art> artList = artMapper.map(artDtos);
+
         return null;
     }
 
