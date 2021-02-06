@@ -1,5 +1,6 @@
 package com.portal.art.app.services;
 
+import com.portal.art.app.common.exceptions.ArgumentOutOfRangeException;
 import com.portal.art.app.models.Art;
 import com.portal.art.app.models.ArtMapper;
 import com.portal.art.app.repositories.ArtRepository;
@@ -104,7 +105,12 @@ class ArtServiceTest {
         assertThat(result.get(1).getId()).isEqualTo("2");
     }
 
-    private Art createArtModel(String id, String name, String username, List<String> techniques){
+    @Test
+    void givenSearchAndPageParameters_whenGetSearchArtsForPageCalled_thenFilteredArtModelsForPageAreReturned() throws ArgumentOutOfRangeException {
+        
+    }
+
+    private Art createArtModel(String id, String name, String username, List<String> techniques) {
         return new Art(id, name, username, techniques);
     }
 }
