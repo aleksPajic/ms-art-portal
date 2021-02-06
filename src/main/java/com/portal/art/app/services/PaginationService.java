@@ -1,7 +1,6 @@
 package com.portal.art.app.services;
 
 import com.portal.art.app.common.exceptions.ArgumentOutOfRangeException;
-import com.portal.art.app.models.PortalPageable;
 
 import java.util.ArrayList;
 import java.util.Collections;

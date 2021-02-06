@@ -1,12 +1,10 @@
 package com.portal.art.app.models;
 
 import org.bson.types.Binary;
-import org.springframework.data.mongodb.core.mapping.Field;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
-public class Art  implements PortalPageable{
+public class Art {
 
     private String id;
 
