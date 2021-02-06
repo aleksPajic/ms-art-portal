@@ -107,7 +107,34 @@ class ArtServiceTest {
 
     @Test
     void givenSearchAndPageParameters_whenGetSearchArtsForPageCalled_thenFilteredArtModelsForPageAreReturned() throws ArgumentOutOfRangeException {
-        
+        //given
+        String tehnique = "technique";
+        String name = "name";
+        String artist = "artist";
+        int pageNumber = 1;
+        int pageSize = 1;
+
+        List<ArtDto> dtos = new ArrayList<>();
+        for (int i = 0; i < 3; i++) {
+            dtos.add(new ArtDto());
+        }
+
+        List<Art> artModels = new ArrayList<>();
+        artModels.add(createArtModel("0", "name0", "artist1", List.of("technique")));
+        artModels.add(createArtModel("1", "test0", "art_test1", List.of("tec_test")));
+        artModels.add(createArtModel("2", "name2", "artist2", List.of("technique2")));
+
+        ArtRepository artRepositoryMock = mock(ArtRepository.class);
+        when(artRepositoryMock.findAll()).thenReturn(dtos);
+        ArtMapper artMapperMock = mock(ArtMapper.class);
+        when(artMapperMock.map(dtos)).thenReturn(artModels);
+        ArtService artService = new ArtService(artRepositoryMock, artMapperMock);
+
+        //when
+        List<Art> result = artService.getSearchArtsForPage(name, artist, tehnique, pageNumber, pageSize);
+
+        //then
+        assertThat(result.size()).isEqualTo(1);
     }
 
     private Art createArtModel(String id, String name, String username, List<String> techniques) {
