@@ -46,10 +46,10 @@ public class ArtService {
     }
 
     public List<Art> searchForArts(String technique, String name, String artist) {
+        SearchArtsService searchArtsService = new SearchArtsService();
         List<ArtDto> artDtos = this.artRepository.findAll();
         List<Art> artList = artMapper.map(artDtos);
-
-        return null;
+        return searchArtsService.searchArts(artList, technique, name, artist);
     }
 
 }
