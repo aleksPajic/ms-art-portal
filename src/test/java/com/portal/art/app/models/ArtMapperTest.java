@@ -24,6 +24,11 @@ class ArtMapperTest {
         assertThat(artModel.getArtist_username()).isEqualTo("artist1");
     }
 
+    @Test
+    public void givenArtDtoList_whenMapMethodCalled_ThenReturnListOfMappedArtModel() {
+        
+    }
+
     private ArtDto createArtDto(String id, String name, String artist) {
         ArtDto artDto = new ArtDto();
         artDto.setId(id);
