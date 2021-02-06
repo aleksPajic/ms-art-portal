@@ -1,6 +1,7 @@
 package com.portal.art.app.controllers;
 
 import com.portal.art.app.controllers.requests.ArtRequest;
+import com.portal.art.app.models.Art;
 import com.portal.art.app.repositories.dtos.ArtDto;
 import com.portal.art.app.services.ArtService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,5 +34,11 @@ public class ArtsController {
     @GetMapping(path = "/page")
     public List<ArtDto> getArtsForPage(@RequestParam("pageNumber") int pageNumber, @RequestParam("pageSize") int pageSize) {
         return this.artService.getArtsForPage(pageNumber, pageSize);
+    }
+
+    @GetMapping(path = "/search")
+    public List<Art> searchForArts(@RequestParam("technique") String technique, @RequestParam("name") String name,
+                                   @RequestParam("artist") String artist) {
+        return this.artService.searchForArts(technique, name, artist);
     }
 }

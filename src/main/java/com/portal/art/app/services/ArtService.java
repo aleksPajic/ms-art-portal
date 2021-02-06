@@ -1,7 +1,7 @@
 package com.portal.art.app.services;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.portal.art.app.controllers.requests.ArtRequest;
+import com.portal.art.app.models.Art;
 import com.portal.art.app.models.ArtMapper;
 import com.portal.art.app.repositories.ArtRepository;
 import com.portal.art.app.repositories.dtos.ArtDto;
@@ -16,13 +16,17 @@ import java.util.List;
 @Service
 public class ArtService {
 
-    @Autowired
-    ArtRepository artRepository;
+    private ArtRepository artRepository;
 
     private ArtMapper artMapper;
 
     public ArtService() {
         this.artMapper = new ArtMapper();
+    }
+
+    @Autowired
+    public ArtService(ArtRepository artRepository) {
+        this.artRepository = artRepository;
     }
 
     public ArtDto createArt(ArtRequest artRequest) throws IOException {
@@ -34,4 +38,10 @@ public class ArtService {
         Pageable pageable = PageRequest.of(pageNumber - 1, pageSize);
         return this.artRepository.findAll(pageable).getContent();
     }
+
+    public List<Art> searchForArts(String technique, String name, String artist) {
+        this.artRepository.findAll();
+        return null;
+    }
+
 }
