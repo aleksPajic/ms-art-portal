@@ -70,4 +70,9 @@ class ArtServiceTest {
         //then
         verify(artMapperMock, times(1)).map(eq(dtos));
     }
+
+    @Test
+    void givenSearchParameters_whenSearchForArtsCalled_thenFilteredArtModelsAreReturned() {
+       
+    }
 }
