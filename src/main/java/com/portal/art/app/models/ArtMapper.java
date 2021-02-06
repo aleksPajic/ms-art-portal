@@ -25,4 +25,16 @@ public class ArtMapper {
         artDto.setTechniqueCodes(Arrays.asList(techniqueCodes));
         return artDto;
     }
+
+    public Art map(ArtDto artDto) {
+        Art art = new Art();
+        art.setId(artDto.getId());
+        art.setName(artDto.getName());
+        art.setArtist_username(artDto.getArtist_username());
+        art.setImage(artDto.getImage());
+        art.setDescription(artDto.getDescription());
+        art.setInspiration(artDto.getInspiration());
+        art.setTechniques(artDto.getTechniqueCodes());
+        return art;
+    }
 }

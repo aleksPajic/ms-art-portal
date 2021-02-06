@@ -1,6 +1,8 @@
 package com.portal.art.app.models;
 
+import org.bson.types.Binary;
 import org.springframework.data.mongodb.core.mapping.Field;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -18,7 +20,7 @@ public class Art  implements PortalPageable{
 
     private String inspiration;
 
-    private String image;
+    private Binary image;
 
     public Art() {
     }
@@ -78,11 +80,11 @@ public class Art  implements PortalPageable{
         this.inspiration = inspiration;
     }
 
-    public String getImage() {
+    public Binary getImage() {
         return image;
     }
 
-    public void setImage(String image) {
+    public void setImage(Binary image) {
         this.image = image;
     }
 }

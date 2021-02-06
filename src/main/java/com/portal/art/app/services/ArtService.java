@@ -29,6 +29,12 @@ public class ArtService {
         this.artRepository = artRepository;
     }
 
+    // unit testing purpose constructor
+    ArtService(ArtRepository artRepository, ArtMapper artMapper) {
+        this.artRepository = artRepository;
+        this.artMapper = artMapper;
+    }
+
     public ArtDto createArt(ArtRequest artRequest) throws IOException {
         ArtDto artDto = artMapper.map(artRequest);
         return artRepository.save(artDto);
