@@ -17,23 +17,14 @@ import java.util.List;
 @Service
 public class ArtService {
 
-    private ArtRepository artRepository;
+    private final ArtRepository artRepository;
 
-    private ArtMapper artMapper;
-
-    public ArtService() {
-        this.artMapper = new ArtMapper();
-    }
+    private final ArtMapper artMapper;
 
     @Autowired
     public ArtService(ArtRepository artRepository) {
         this.artRepository = artRepository;
-    }
-
-    // unit testing purpose constructor
-    ArtService(ArtRepository artRepository, ArtMapper artMapper) {
-        this.artRepository = artRepository;
-        this.artMapper = artMapper;
+        this.artMapper = new ArtMapper();
     }
 
     public void createArt(ArtRequest artRequest) throws IOException {
