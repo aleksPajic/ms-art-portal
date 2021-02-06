@@ -32,4 +32,9 @@ class ArtServiceTest {
         //then
         verify(artRepositoryMock, times(1)).findAll();
     }
+
+    @Test
+    void givenSearchParameters_whenSearchForArtsCalled_thenAllArtDtosAreMappedToArtModel() {
+        
+    }
 }
