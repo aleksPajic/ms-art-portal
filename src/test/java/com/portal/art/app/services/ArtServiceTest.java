@@ -24,9 +24,16 @@ class ArtServiceTest {
             dtos.add(new ArtDto());
         }
 
+        List<Art> artModels = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            artModels.add(new Art());
+        }
+
         ArtRepository artRepositoryMock = mock(ArtRepository.class);
         when(artRepositoryMock.findAll()).thenReturn(dtos);
-        ArtService artService = new ArtService(artRepositoryMock);
+        ArtMapper artMapperMock = mock(ArtMapper.class);
+        when(artMapperMock.map(dtos)).thenReturn(artModels);
+        ArtService artService = new ArtService(artRepositoryMock, artMapperMock);
 
         //when
         artService.searchForArts(tehnique, name, artist);
@@ -53,11 +60,9 @@ class ArtServiceTest {
 
         ArtRepository artRepositoryMock = mock(ArtRepository.class);
         when(artRepositoryMock.findAll()).thenReturn(dtos);
-
         ArtMapper artMapperMock = mock(ArtMapper.class);
         when(artMapperMock.map(dtos)).thenReturn(artModels);
-
-        ArtService artService = new ArtService(artRepositoryMock);
+        ArtService artService = new ArtService(artRepositoryMock, artMapperMock);
 
         //when
         artService.searchForArts(tehnique, name, artist);
