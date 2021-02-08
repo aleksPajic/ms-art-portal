@@ -7,6 +7,7 @@ public class ArtRequest {
     private MultipartFile artImage;
     private String name;
     private String inspiration;
+    private String artistUsername;
     private String description;
     private String techniqueCodes;
 
@@ -49,5 +50,13 @@ public class ArtRequest {
 
     public void setTechniqueCodes(String techniqueCodes) {
         this.techniqueCodes = techniqueCodes;
+    }
+
+    public String getArtistUsername() {
+        return artistUsername;
+    }
+
+    public void setArtistUsername(String artistUsername) {
+        this.artistUsername = artistUsername;
     }
 }

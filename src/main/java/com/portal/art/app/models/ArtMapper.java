@@ -22,6 +22,7 @@ public class ArtMapper {
         artDto.setName(!artRequest.getName().isEmpty() ? artRequest.getName() : null);
         artDto.setDescription(!artRequest.getDescription().isEmpty() ? artRequest.getDescription() : null);
         artDto.setInspiration(!artRequest.getInspiration().isEmpty() ? artRequest.getInspiration() : null);
+        artDto.setArtist_username(artRequest.getArtistUsername());
         ObjectMapper objectMapper = new ObjectMapper();
         String[] techniqueCodes = objectMapper.readValue(artRequest.getTechniqueCodes(), String[].class);
         artDto.setTechniqueCodes(Arrays.asList(techniqueCodes));
