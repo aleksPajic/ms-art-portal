@@ -35,8 +35,12 @@ public class ArtsController {
     }
 
     @GetMapping(path = "/page")
-    public List<ArtDto> getArtsForPage(@RequestParam("pageNumber") int pageNumber, @RequestParam("pageSize") int pageSize) {
-        return this.artService.getArtsForPage(pageNumber, pageSize);
+    public List<Art> getArtsForPage(@RequestParam("pageNumber") int pageNumber, @RequestParam("pageSize") int pageSize) {
+        try {
+            return this.artService.getArtsForPage(pageNumber, pageSize);
+        } catch (ArgumentOutOfRangeException e) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @GetMapping(path = "/search")
