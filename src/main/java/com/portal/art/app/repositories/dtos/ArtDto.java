@@ -5,6 +5,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Document(collection = "art")
@@ -30,6 +31,9 @@ public class ArtDto {
 
     @Field(name = "image")
     private Binary image;
+
+    @Field(name = "date_created")
+    private LocalDateTime dateCreated;
 
     public String getId() {
         return id;
@@ -85,5 +89,13 @@ public class ArtDto {
 
     public void setImage(Binary image) {
         this.image = image;
+    }
+
+    public LocalDateTime getDateCreated() {
+        return dateCreated;
+    }
+
+    public void setDateCreated(LocalDateTime dateCreated) {
+        this.dateCreated = dateCreated;
     }
 }
