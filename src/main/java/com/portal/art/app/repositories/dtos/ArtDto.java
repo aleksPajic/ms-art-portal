@@ -17,7 +17,7 @@ public class ArtDto {
     private String name;
 
     @Field(name = "artist_username")
-    private String artist_username;
+    private String artistUsername;
 
     @Field(name = "description")
     private String description;
@@ -47,12 +47,12 @@ public class ArtDto {
         this.name = name;
     }
 
-    public String getArtist_username() {
-        return artist_username;
+    public String getArtistUsername() {
+        return artistUsername;
     }
 
-    public void setArtist_username(String artist_username) {
-        this.artist_username = artist_username;
+    public void setArtistUsername(String artistUsername) {
+        this.artistUsername = artistUsername;
     }
 
     public String getDescription() {

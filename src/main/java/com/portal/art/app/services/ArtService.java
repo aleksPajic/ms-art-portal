@@ -34,4 +34,8 @@ public class ArtService {
         Pageable pageable = PageRequest.of(pageNumber - 1, pageSize);
         return this.artRepository.findAll(pageable).getContent();
     }
+
+    public List<ArtDto> getAllArtsForUser(String username) {
+        return this.artRepository.findByThePersonsFirstname(username);
+    }
 }

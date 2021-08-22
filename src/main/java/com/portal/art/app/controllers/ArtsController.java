@@ -34,4 +34,9 @@ public class ArtsController {
     public List<ArtDto> getArtsForPage(@RequestParam("pageNumber") int pageNumber, @RequestParam("pageSize") int pageSize) {
         return this.artService.getArtsForPage(pageNumber, pageSize);
     }
+
+    @GetMapping(path = "/user")
+    public List<ArtDto> getArtsForPage(@RequestParam("user") String user) {
+        return this.artService.getAllArtsForUser(user);
+    }
 }
