@@ -29,10 +29,10 @@ public class ArtService {
         artRepository.save(artDto);
     }
 
-    public List<ArtDto> getArtsForPage(int pageNumber, int pageSize) {
+    public List<ArtDto> getArtsForPage(String username, int pageNumber, int pageSize) {
         Sort sort = Sort.by("date_created").descending();
         Pageable pageable = PageRequest.of(pageNumber - 1, pageSize, sort);
-        return this.artRepository.findAll(pageable).getContent();
+        return this.artRepository.findArtsNotInUsername(username, pageable).getContent();
     }
 
     public List<ArtDto> getAllArtsForUser(String username) {
