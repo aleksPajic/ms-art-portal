@@ -39,4 +39,10 @@ public class ArtsController {
     public List<ArtDto> getArtsForPage(@RequestParam("user") String user) {
         return this.artService.getAllArtsForUser(user);
     }
+
+    @DeleteMapping(path = "/delete")
+    public HttpStatus removeArt(@RequestParam("art") String art) {
+        artService.removeArt(art);
+        return HttpStatus.OK;
+    }
 }

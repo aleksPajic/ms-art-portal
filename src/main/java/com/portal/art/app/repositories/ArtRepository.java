@@ -13,7 +13,7 @@ import java.util.List;
 public interface ArtRepository extends MongoRepository<ArtDto, String> {
 
     @Query("{ 'artist_username' : ?0 }")
-    List<ArtDto> findByThePersonsFirstname(String username);
+    List<ArtDto> findByArtistUsername(String username);
 
     @Query("{  'artist_username': { $not : { $eq: ?0 }} }")
     Page<ArtDto> findArtsNotInUsername(String username, Pageable pageable);

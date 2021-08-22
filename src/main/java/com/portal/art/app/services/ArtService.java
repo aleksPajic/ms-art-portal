@@ -15,27 +15,30 @@ import java.util.List;
 @Service
 public class ArtService {
 
-    final ArtRepository artRepository;
-
+    private final ArtRepository artRepository;
     private final ArtMapper artMapper;
 
-    public ArtService(ArtRepository artRepository) {
+    public ArtService(final ArtRepository artRepository) {
         this.artMapper = new ArtMapper();
         this.artRepository = artRepository;
     }
 
-    public void createArt(ArtRequest artRequest) throws IOException {
+    public void createArt(final ArtRequest artRequest) throws IOException {
         ArtDto artDto = artMapper.map(artRequest);
         artRepository.save(artDto);
     }
 
-    public List<ArtDto> getArtsForPage(String username, int pageNumber, int pageSize) {
+    public List<ArtDto> getArtsForPage(final String username, final  int pageNumber, final  int pageSize) {
         Sort sort = Sort.by("date_created").descending();
         Pageable pageable = PageRequest.of(pageNumber - 1, pageSize, sort);
         return this.artRepository.findArtsNotInUsername(username, pageable).getContent();
     }
 
-    public List<ArtDto> getAllArtsForUser(String username) {
-        return this.artRepository.findByThePersonsFirstname(username);
+    public List<ArtDto> getAllArtsForUser(final String username) {
+        return this.artRepository.findByArtistUsername(username);
+    }
+
+    public void removeArt(final String art) {
+        artRepository.deleteById(art);
     }
 }
